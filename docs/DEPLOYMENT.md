@@ -30,3 +30,16 @@ El workflow `.github/workflows/ci.yml` usa Node 24 y ejecuta:
 2. Source: GitHub Actions.
 3. Hacer push a `main`.
 4. Verificar deploy en Actions.
+
+## PWA En GitHub Pages
+
+Los assets PWA viven en `public/` y se publican automáticamente dentro de `dist/`.
+
+Archivos relevantes:
+
+- `public/manifest.webmanifest`
+- `public/sw.js`
+- `public/offline.html`
+- `public/pwa-icon.svg`
+
+El service worker usa scope `/card-game-app/`, alineado con la subruta de GitHub Pages.

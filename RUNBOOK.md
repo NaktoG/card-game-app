@@ -36,6 +36,8 @@ npm run build
 - Finalizar partida o simular ranking local.
 - Cambiar idioma ES/EN.
 - Activar/desactivar sonido.
+- Instalar como PWA si el navegador ofrece la opción.
+- Probar fallback offline cerrando la conexión después de una primera carga.
 - Revisar responsive en móvil y desktop.
 
 ## Errores Comunes
@@ -59,6 +61,16 @@ Acciones:
 ### Ranking vacío
 
 El ranking es local. Si el navegador borra datos o se usa otro dispositivo, empieza vacío.
+
+### Cambios visuales no aparecen
+
+Puede existir caché del service worker.
+
+Acciones:
+
+1. Recargar con hard refresh.
+2. En DevTools → Application → Service Workers → Unregister.
+3. Cerrar y abrir nuevamente la PWA instalada.
 
 ## Rollback
 

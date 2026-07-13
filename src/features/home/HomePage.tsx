@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import type { AppRoute } from '../../app/App';
 import { Button } from '../../shared/components/Button';
 import { MotionPage } from '../../shared/components/MotionPage';
+import { PremiumPanel } from '../../shared/components/PremiumPanel';
 import { playSound } from '../../shared/audio/soundManager';
 import { useSettingsStore } from '../settings/settingsStore';
 import { useSessionStore } from './sessionStore';
@@ -49,56 +50,73 @@ export function HomePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
             {t('home.description')}
           </p>
 
-          <form
-            onSubmit={submit}
-            className="mt-8 max-w-xl rounded-[2rem] border border-white/10 bg-white/[0.07] p-4 shadow-card backdrop-blur-xl sm:p-5"
-          >
-            <label
-              htmlFor="nickname"
-              className="block text-sm font-black uppercase tracking-[0.24em] text-slate-300"
-            >
-              {t('home.nicknameLabel')}
-            </label>
-            <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-              <input
-                id="nickname"
-                value={nicknameInput}
-                onChange={(event) => setNicknameInput(event.target.value)}
-                onBlur={() => setTouched(true)}
-                placeholder={t('home.nicknamePlaceholder')}
-                aria-invalid={touched && !nicknameIsValid}
-                aria-describedby="nickname-error"
-                className="min-h-12 flex-1 rounded-2xl border border-white/10 bg-slate-950/70 px-4 text-base font-bold text-white outline-none transition placeholder:text-slate-500 focus:border-lime-300 focus:ring-2 focus:ring-lime-300/40"
-              />
-              <Button type="submit" className="sm:min-w-48">
-                <span className="inline-flex items-center justify-center gap-2">
-                  {storedNickname
-                    ? t('home.continueAs', { nickname: storedNickname })
-                    : t('home.start')}
-                  <ArrowRight size={18} aria-hidden="true" />
-                </span>
-              </Button>
-            </div>
-            <p
-              id="nickname-error"
-              className="mt-3 min-h-5 text-sm font-semibold text-rose-200"
-              aria-live="polite"
-            >
-              {touched && !nicknameIsValid ? t('home.nicknameError') : ''}
-            </p>
-          </form>
+          <PremiumPanel className="mt-8 max-w-xl p-4 sm:p-5">
+            <form onSubmit={submit}>
+              <label
+                htmlFor="nickname"
+                className="block text-sm font-black uppercase tracking-[0.24em] text-slate-300"
+              >
+                {t('home.nicknameLabel')}
+              </label>
+              <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+                <input
+                  id="nickname"
+                  value={nicknameInput}
+                  onChange={(event) => setNicknameInput(event.target.value)}
+                  onBlur={() => setTouched(true)}
+                  placeholder={t('home.nicknamePlaceholder')}
+                  aria-invalid={touched && !nicknameIsValid}
+                  aria-describedby="nickname-error"
+                  className="min-h-12 flex-1 rounded-2xl border border-white/10 bg-slate-950/70 px-4 text-base font-bold text-white outline-none transition placeholder:text-slate-500 focus:border-lime-300 focus:ring-2 focus:ring-lime-300/40"
+                />
+                <Button type="submit" className="sm:min-w-48">
+                  <span className="inline-flex items-center justify-center gap-2">
+                    {storedNickname
+                      ? t('home.continueAs', { nickname: storedNickname })
+                      : t('home.start')}
+                    <ArrowRight size={18} aria-hidden="true" />
+                  </span>
+                </Button>
+              </div>
+              <p
+                id="nickname-error"
+                className="mt-3 min-h-5 text-sm font-semibold text-rose-200"
+                aria-live="polite"
+              >
+                {touched && !nicknameIsValid ? t('home.nicknameError') : ''}
+              </p>
+            </form>
+          </PremiumPanel>
+
+          <div className="mt-6 grid max-w-2xl grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+            {['Framer Motion', 'PWA Ready', 'Local Ranking'].map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-white/10 bg-white/[0.055] px-4 py-3 font-black uppercase tracking-[0.18em] text-slate-200 backdrop-blur-xl"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
+        <div className="relative mx-auto aspect-[4/5] w-full max-w-md [perspective:1200px]">
+          <motion.div
+            animate={{ opacity: [0.4, 0.9, 0.4], scale: [0.96, 1.04, 0.96] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute inset-8 rounded-full bg-lime-300/20 blur-3xl"
+            aria-hidden="true"
+          />
           {[0, 1, 2, 3].map((card) => (
             <motion.div
               key={card}
               animate={{ y: [0, -12, 0], rotate: -16 + card * 10 }}
               transition={{ duration: 4 + card * 0.3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute left-1/2 top-1/2 h-72 w-48 -translate-x-1/2 -translate-y-1/2 rounded-[1.7rem] border border-white/15 bg-gradient-to-br from-white/20 to-white/5 p-3 shadow-card backdrop-blur-xl"
+              className="absolute left-1/2 top-1/2 h-72 w-48 -translate-x-1/2 -translate-y-1/2 rounded-[1.7rem] border border-white/15 bg-gradient-to-br from-white/25 to-white/5 p-3 shadow-card backdrop-blur-xl"
               style={{ transformOrigin: '50% 120%' }}
             >
-              <div className="grid h-full place-items-center rounded-[1.2rem] border border-lime-300/20 bg-slate-950/70 text-5xl font-black text-lime-300">
+              <div className="relative grid h-full place-items-center overflow-hidden rounded-[1.2rem] border border-lime-300/20 bg-slate-950/80 text-5xl font-black text-lime-300">
+                <span className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/20 to-transparent" />
                 {card % 2 === 0 ? 'A' : 'K'}
               </div>
             </motion.div>

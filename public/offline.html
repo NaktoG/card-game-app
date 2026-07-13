@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Game App Offline</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at top left, rgba(190, 242, 100, 0.25), transparent 35%),
+          #020617;
+        color: white;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      main {
+        width: min(90vw, 560px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 32px;
+        padding: 32px;
+        background: rgba(255, 255, 255, 0.07);
+        text-align: center;
+      }
+      h1 {
+        font-size: clamp(2rem, 8vw, 4rem);
+        margin: 0;
+      }
+      p {
+        color: #cbd5e1;
+        line-height: 1.7;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Offline</h1>
+      <p>No hay conexión disponible. Volvé a intentarlo cuando recuperes internet.</p>
+    </main>
+  </body>
+</html>

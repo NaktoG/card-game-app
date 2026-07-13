@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Card Game App icon">
+  <defs>
+    <radialGradient id="g" cx="32%" cy="18%" r="80%">
+      <stop offset="0" stop-color="#bef264"/>
+      <stop offset="0.45" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#050816"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="#050816"/>
+  <circle cx="256" cy="256" r="210" fill="url(#g)" opacity="0.22"/>
+  <g filter="url(#shadow)">
+    <rect x="142" y="74" width="228" height="364" rx="42" fill="#bef264" transform="rotate(-7 256 256)"/>
+    <rect x="166" y="101" width="180" height="310" rx="30" fill="#0f172a" transform="rotate(-7 256 256)"/>
+    <text x="256" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="132" font-weight="900" fill="#bef264">A</text>
+  </g>
+</svg>

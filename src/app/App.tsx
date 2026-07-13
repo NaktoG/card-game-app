@@ -7,6 +7,8 @@ import { useSessionStore } from '../features/home/sessionStore';
 import { HomePage } from '../features/home/HomePage';
 import { RankingPage } from '../features/ranking/RankingPage';
 import { useSettingsStore } from '../features/settings/settingsStore';
+import { ArenaBackdrop } from '../shared/components/ArenaBackdrop';
+import { InstallPrompt } from '../shared/components/InstallPrompt';
 import { persistLanguage } from '../shared/i18n';
 
 export type AppRoute = 'home' | 'game' | 'ranking';
@@ -40,8 +42,7 @@ export function App() {
 
   return (
     <div className="min-h-dvh overflow-hidden bg-slate-950 text-white">
-      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.22),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.2),transparent_30%),linear-gradient(135deg,#050816,#0f172a_52%,#020617)]" />
-      <div className="fixed inset-0 -z-10 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] [background-size:56px_56px]" />
+      <ArenaBackdrop />
 
       <header className="sticky top-0 z-30 border-b border-white/10 bg-slate-950/70 backdrop-blur-2xl">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
@@ -97,6 +98,7 @@ export function App() {
                 EN
               </option>
             </select>
+            <InstallPrompt />
             <button
               type="button"
               onClick={toggleSound}

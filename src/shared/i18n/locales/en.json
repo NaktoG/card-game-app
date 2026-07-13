@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Card Game App",
-    "subtitle": "A modern card arena with local ranking, sound and premium animations."
+    "subtitle": "A modern card arena with local ranking, sound and premium animations.",
+    "install": "Install"
   },
   "home": {
     "eyebrow": "Neon Card Arena",

@@ -5,6 +5,7 @@ import type { AppRoute } from '../../app/App';
 import { Button } from '../../shared/components/Button';
 import { EmptyState } from '../../shared/components/EmptyState';
 import { MotionPage } from '../../shared/components/MotionPage';
+import { PremiumPanel } from '../../shared/components/PremiumPanel';
 import { useSessionStore } from '../home/sessionStore';
 import { useRankingStore } from './rankingStore';
 
@@ -45,7 +46,7 @@ export function RankingPage({ onNavigate }: { onNavigate: (route: AppRoute) => v
         {entries.length === 0 ? (
           <EmptyState title={t('ranking.emptyTitle')} description={t('ranking.emptyDescription')} />
         ) : (
-          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-card backdrop-blur-xl">
+          <PremiumPanel>
             <div className="grid grid-cols-[72px_1fr_repeat(3,80px)] gap-2 border-b border-white/10 px-4 py-3 text-xs font-black uppercase tracking-[0.2em] text-slate-400 max-md:hidden">
               <span>#</span>
               <span>{t('ranking.player')}</span>
@@ -78,7 +79,7 @@ export function RankingPage({ onNavigate }: { onNavigate: (route: AppRoute) => v
                 </motion.article>
               ))}
             </div>
-          </div>
+          </PremiumPanel>
         )}
       </section>
     </MotionPage>

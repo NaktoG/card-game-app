@@ -35,6 +35,8 @@ La experiencia está diseñada como una arena visual dark-first con animaciones,
 | i18n            | Español e inglés con `i18next` y persistencia de idioma           |
 | Responsive      | Mobile-first, adaptable a resoluciones pequeñas y grandes         |
 | Accesibilidad   | Semántica, foco visible, labels, modal accesible y reduced motion |
+| PWA             | Manifest, service worker, iconos SVG y fallback offline           |
+| SEO social      | Open Graph, Twitter Card e imagen SVG de preview                  |
 | Testing         | Tests unitarios para lógica crítica del dominio                   |
 | CI/CD           | GitHub Actions con lint, typecheck, tests, build y deploy a Pages |
 
@@ -132,6 +134,17 @@ El ranking se guarda en `localStorage`. Esto implica:
 - No existe ranking global real.
 - Se pierde si el usuario limpia los datos del navegador.
 - Puede migrarse más adelante a Supabase, Firebase o backend propio.
+
+## PWA
+
+La app puede instalarse en dispositivos compatibles:
+
+- Manifest: `public/manifest.webmanifest`
+- Service worker: `public/sw.js`
+- Fallback offline: `public/offline.html`
+- Icono: `public/pwa-icon.svg`
+
+El service worker cachea el shell de la app y assets estáticos. No cachea la API de cartas para evitar datos obsoletos.
 
 ## Deploy En GitHub Pages
 

@@ -63,7 +63,8 @@ export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
           </p>
         ) : null}
 
-        <div className="grid gap-5 lg:grid-cols-[1fr_280px_1fr] lg:items-center">
+        <div className="relative grid gap-5 lg:grid-cols-[1fr_280px_1fr] lg:items-center">
+          <div className="pointer-events-none absolute inset-x-12 top-1/2 hidden h-24 -translate-y-1/2 rounded-full bg-lime-300/10 blur-3xl lg:block" />
           <PlayerPanel
             label={t('game.player')}
             score={state.playerPile.length}

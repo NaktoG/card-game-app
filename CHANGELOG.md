@@ -15,3 +15,14 @@ Todas las versiones relevantes se documentarán en este archivo.
 - Tests unitarios para lógica crítica del juego.
 - Documentación profesional y runbook.
 - CI/CD para GitHub Pages.
+
+### Improved
+
+- Segunda pasada visual premium con auroras, partículas, panels glass y mejores cartas.
+- Modal final con confetti animado.
+- Ranking y scoreboard con tratamiento visual premium.
+
+### Added
+
+- PWA con manifest, service worker, iconos SVG y fallback offline.
+- Metadatos SEO/Open Graph y Twitter Card.

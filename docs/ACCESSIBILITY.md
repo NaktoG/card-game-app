@@ -14,6 +14,8 @@ La aplicación apunta a WCAG 2.1 AA como baseline práctico.
 - Modal final con `role="dialog"` y `aria-modal`.
 - Respeto de `prefers-reduced-motion`.
 - Targets táctiles mínimos de 44px.
+- Botón de instalación PWA solo aparece cuando el navegador dispara `beforeinstallprompt`.
+- El fallback offline conserva contraste y texto legible.
 
 ## Pendiente Recomendado
 

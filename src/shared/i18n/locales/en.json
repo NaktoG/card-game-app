@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Card Game App",
+    "subtitle": "A modern card arena with local ranking, sound and premium animations."
+  },
+  "home": {
+    "eyebrow": "Neon Card Arena",
+    "headline": "Enter a cinematic card battle",
+    "description": "Register with a nickname, challenge the CPU and climb the local ranking while the deck decides your fate.",
+    "nicknameLabel": "Nickname",
+    "nicknamePlaceholder": "Example: NaktoG",
+    "nicknameError": "Use 2 to 18 characters.",
+    "start": "Enter the arena",
+    "continueAs": "Continue as {{nickname}}",
+    "language": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "game": "Game",
+    "ranking": "Ranking"
+  },
+  "game": {
+    "player": "Player",
+    "cpu": "CPU",
+    "deck": "Deck",
+    "pot": "Pot",
+    "remaining": "{{count}} cards remaining",
+    "handsLeft": "{{count}} hands available",
+    "start": "New game",
+    "draw": "Draw cards",
+    "drawing": "Dealing...",
+    "reset": "Reset",
+    "playerWonHand": "You won the hand",
+    "cpuWonHand": "CPU wins the hand",
+    "tieHand": "Tie: the pot grows",
+    "ready": "Prepare the deck to begin.",
+    "loading": "Shuffling the deck...",
+    "error": "We could not connect to the deck. Try again.",
+    "soundOn": "Sound enabled",
+    "soundOff": "Sound disabled"
+  },
+  "result": {
+    "title": "Game over",
+    "player": "Epic victory",
+    "cpu": "CPU controls the table",
+    "tie": "Total draw",
+    "summary": "Player {{playerCards}} - CPU {{cpuCards}}",
+    "playAgain": "Play again",
+    "viewRanking": "View ranking"
+  },
+  "ranking": {
+    "title": "Local ranking",
+    "description": "Stored in this browser with localStorage. It is not shared across devices.",
+    "emptyTitle": "No players yet",
+    "emptyDescription": "Play a match to open the ranking.",
+    "player": "Player",
+    "wins": "Wins",
+    "losses": "Losses",
+    "draws": "Draws",
+    "bestScore": "Best score",
+    "games": "Games",
+    "clear": "Clear ranking"
+  }
+}

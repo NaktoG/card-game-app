@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "Card Game App",
+    "subtitle": "Arena de cartas moderna con ranking local, sonido y animaciones premium."
+  },
+  "home": {
+    "eyebrow": "Neon Card Arena",
+    "headline": "Entrá a una batalla de cartas cinematográfica",
+    "description": "Registrate con un nickname, enfrentá a la CPU y escalá el ranking local mientras el mazo decide tu destino.",
+    "nicknameLabel": "Nickname",
+    "nicknamePlaceholder": "Ej: NaktoG",
+    "nicknameError": "Usá entre 2 y 18 caracteres.",
+    "start": "Entrar a la arena",
+    "continueAs": "Continuar como {{nickname}}",
+    "language": "Idioma"
+  },
+  "nav": {
+    "home": "Inicio",
+    "game": "Juego",
+    "ranking": "Ranking"
+  },
+  "game": {
+    "player": "Jugador",
+    "cpu": "CPU",
+    "deck": "Mazo",
+    "pot": "Pozo",
+    "remaining": "{{count}} cartas restantes",
+    "handsLeft": "{{count}} manos disponibles",
+    "start": "Nueva partida",
+    "draw": "Robar cartas",
+    "drawing": "Repartiendo...",
+    "reset": "Reiniciar",
+    "playerWonHand": "Ganaste la mano",
+    "cpuWonHand": "La CPU gana la mano",
+    "tieHand": "Empate: el pozo crece",
+    "ready": "Prepará el mazo para empezar.",
+    "loading": "Barajando el mazo...",
+    "error": "No pudimos conectar con el mazo. Intentá de nuevo.",
+    "soundOn": "Sonido activado",
+    "soundOff": "Sonido desactivado"
+  },
+  "result": {
+    "title": "Partida finalizada",
+    "player": "Victoria épica",
+    "cpu": "La CPU domina la mesa",
+    "tie": "Empate total",
+    "summary": "Jugador {{playerCards}} - CPU {{cpuCards}}",
+    "playAgain": "Jugar otra vez",
+    "viewRanking": "Ver ranking"
+  },
+  "ranking": {
+    "title": "Ranking local",
+    "description": "Guardado en este navegador con localStorage. No se comparte entre dispositivos.",
+    "emptyTitle": "Todavía no hay jugadores",
+    "emptyDescription": "Jugá una partida para inaugurar el ranking.",
+    "player": "Jugador",
+    "wins": "Victorias",
+    "losses": "Derrotas",
+    "draws": "Empates",
+    "bestScore": "Mejor score",
+    "games": "Partidas",
+    "clear": "Limpiar ranking"
+  }
+}

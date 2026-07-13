@@ -14,7 +14,7 @@ base: '/card-game-app/';
 
 ## Workflow
 
-El workflow `.github/workflows/ci.yml` ejecuta:
+El workflow `.github/workflows/ci.yml` usa Node 24 y ejecuta:
 
 1. `npm ci`
 2. `npm run lint`

@@ -13,7 +13,16 @@
     "nicknameError": "Usá entre 2 y 18 caracteres.",
     "start": "Entrar a la arena",
     "continueAs": "Continuar como {{nickname}}",
-    "language": "Idioma"
+    "language": "Idioma",
+    "highlights": {
+      "motion": "Framer Motion",
+      "pwa": "PWA lista",
+      "ranking": "Ranking local"
+    }
+  },
+  "footer": {
+    "tagline": "Proyecto demo profesional desplegado en GitHub Pages.",
+    "repositoryAria": "Abrir repositorio de Card Game App en GitHub"
   },
   "nav": {
     "home": "Inicio",

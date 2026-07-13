@@ -89,12 +89,12 @@ export function HomePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
           </PremiumPanel>
 
           <div className="mt-6 grid max-w-2xl grid-cols-1 gap-3 text-sm sm:grid-cols-3">
-            {['Framer Motion', 'PWA Ready', 'Local Ranking'].map((item) => (
+            {(['motion', 'pwa', 'ranking'] as const).map((item) => (
               <div
                 key={item}
                 className="rounded-2xl border border-white/10 bg-white/[0.055] px-4 py-3 font-black uppercase tracking-[0.18em] text-slate-200 backdrop-blur-xl"
               >
-                {item}
+                {t(`home.highlights.${item}`)}
               </div>
             ))}
           </div>

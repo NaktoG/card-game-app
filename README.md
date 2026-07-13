@@ -37,6 +37,7 @@ La experiencia está diseñada como una arena visual dark-first con animaciones,
 | Accesibilidad   | Semántica, foco visible, labels, modal accesible y reduced motion |
 | PWA             | Manifest, service worker, iconos SVG y fallback offline           |
 | SEO social      | Open Graph, Twitter Card e imagen SVG de preview                  |
+| Footer          | Enlace visible al repositorio GitHub desde todas las pantallas    |
 | Testing         | Tests unitarios para lógica crítica del dominio                   |
 | CI/CD           | GitHub Actions con lint, typecheck, tests, build y deploy a Pages |
 

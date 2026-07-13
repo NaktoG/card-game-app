@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { Gamepad2, Home, Trophy, Volume2, VolumeX } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,10 @@ import { HomePage } from '../features/home/HomePage';
 import { RankingPage } from '../features/ranking/RankingPage';
 import { useSettingsStore } from '../features/settings/settingsStore';
 import { ArenaBackdrop } from '../shared/components/ArenaBackdrop';
+import { AppFooter } from '../shared/components/AppFooter';
 import { InstallPrompt } from '../shared/components/InstallPrompt';
+import { LogoMark } from '../shared/components/LogoMark';
+import { APP_CONFIG } from '../shared/config/appConfig';
 import { persistLanguage } from '../shared/i18n';
 
 export type AppRoute = 'home' | 'game' | 'ranking';
@@ -51,18 +54,12 @@ export function App() {
             onClick={() => navigate('home')}
             className="group flex items-center gap-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-300"
           >
-            <motion.span
-              animate={{ rotate: [0, -4, 4, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity }}
-              className="grid h-12 w-12 place-items-center rounded-2xl bg-lime-300 text-2xl font-black text-slate-950 shadow-glow"
-            >
-              A
-            </motion.span>
+            <LogoMark />
             <span>
               <span className="block font-display text-lg font-black tracking-tight">
                 {t('app.title')}
               </span>
-              <span className="block text-xs text-slate-400">NaktoG Studio Demo</span>
+              <span className="block text-xs text-slate-400">{APP_CONFIG.brandLabel}</span>
             </span>
           </button>
 
@@ -116,6 +113,7 @@ export function App() {
         {route === 'game' ? <GamePage key="game" onNavigate={navigate} /> : null}
         {route === 'ranking' ? <RankingPage key="ranking" onNavigate={navigate} /> : null}
       </AnimatePresence>
+      <AppFooter />
     </div>
   );
 }

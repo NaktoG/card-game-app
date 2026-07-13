@@ -13,7 +13,16 @@
     "nicknameError": "Use 2 to 18 characters.",
     "start": "Enter the arena",
     "continueAs": "Continue as {{nickname}}",
-    "language": "Language"
+    "language": "Language",
+    "highlights": {
+      "motion": "Framer Motion",
+      "pwa": "PWA ready",
+      "ranking": "Local ranking"
+    }
+  },
+  "footer": {
+    "tagline": "Professional demo project deployed on GitHub Pages.",
+    "repositoryAria": "Open Card Game App repository on GitHub"
   },
   "nav": {
     "home": "Home",

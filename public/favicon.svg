@@ -1,6 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Card Game App">
-  <rect width="64" height="64" rx="18" fill="#050816"/>
-  <rect x="12" y="9" width="40" height="46" rx="9" fill="#bef264"/>
-  <rect x="17" y="14" width="30" height="36" rx="6" fill="#0f172a"/>
-  <text x="32" y="39" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="900" fill="#bef264">A</text>
+  <defs>
+    <linearGradient id="bg" x1="8" x2="56" y1="8" y2="56">
+      <stop stop-color="#bef264"/>
+      <stop offset="0.52" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#050816"/>
+  <circle cx="32" cy="32" r="27" fill="url(#bg)" opacity="0.28"/>
+  <rect x="19" y="10" width="25" height="39" rx="6" fill="#f8fafc" transform="rotate(10 31.5 29.5)"/>
+  <rect x="14" y="15" width="25" height="39" rx="6" fill="#bef264" transform="rotate(-10 26.5 34.5)"/>
+  <rect x="18" y="19" width="17" height="31" rx="4" fill="#0f172a" transform="rotate(-10 26.5 34.5)"/>
+  <path d="M27 29c-3.4-4.2-9.6.2-6.3 5.2L27 42l6.3-7.8c3.3-5-2.9-9.4-6.3-5.2Z" fill="#ef4444"/>
 </svg>

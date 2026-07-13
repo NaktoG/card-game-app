@@ -26,3 +26,8 @@ Todas las versiones relevantes se documentarán en este archivo.
 
 - PWA con manifest, service worker, iconos SVG y fallback offline.
 - Metadatos SEO/Open Graph y Twitter Card.
+- Footer responsive con enlace directo al repositorio en GitHub.
+
+### Changed
+
+- Favicon e iconos PWA reemplazados por una identidad visual basada en cartas y palos.

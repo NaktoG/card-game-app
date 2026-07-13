@@ -11,7 +11,8 @@
   <text x="90" y="190" font-family="Arial, sans-serif" font-size="44" font-weight="900" fill="#bef264" letter-spacing="8">NEON CARD ARENA</text>
   <text x="90" y="300" font-family="Arial, sans-serif" font-size="92" font-weight="900" fill="#fff">Card Game App</text>
   <text x="94" y="370" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#cbd5e1">React + Vite + Framer Motion</text>
-  <rect x="840" y="105" width="210" height="330" rx="34" fill="#bef264" transform="rotate(9 945 270)"/>
-  <rect x="870" y="136" width="150" height="268" rx="24" fill="#0f172a" transform="rotate(9 945 270)"/>
-  <text x="945" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="106" font-weight="900" fill="#bef264">A</text>
+  <rect x="830" y="105" width="210" height="330" rx="34" fill="#f8fafc" transform="rotate(12 935 270)"/>
+  <rect x="760" y="145" width="230" height="350" rx="38" fill="#bef264" transform="rotate(-10 875 320)"/>
+  <rect x="794" y="184" width="162" height="272" rx="24" fill="#0f172a" transform="rotate(-10 875 320)"/>
+  <path d="M880 285c-32-39-89 2-59 49l59 72 59-72c30-47-27-88-59-49Z" fill="#ef4444"/>
 </svg>

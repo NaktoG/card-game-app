@@ -15,7 +15,7 @@ La aplicación usa un monolito frontend modular por features. Es una SPA estáti
 | `features/game/components` | UI específica del juego                    |
 | `features/ranking`         | Ranking local y persistencia               |
 | `features/settings`        | Preferencias locales                       |
-| `shared`                   | UI, i18n, audio y utilidades reutilizables |
+| `shared`                   | UI, config, i18n, audio y utilidades       |
 
 ## Decisiones
 
@@ -26,6 +26,10 @@ Las reglas viven en funciones puras para que puedan probarse sin DOM, red ni ren
 ### Ranking Local
 
 Se usa `localStorage` porque no hay base de datos. La UI queda preparada para migrar más adelante a un repositorio remoto si se agrega backend.
+
+### Configuración Centralizada
+
+Los datos de marca, repositorio, base path y service worker viven en `src/shared/config/appConfig.ts`. La configuración de la API externa vive en `src/features/game/config/deckApiConfig.ts`.
 
 ### GitHub Pages
 

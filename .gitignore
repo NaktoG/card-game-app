@@ -36,3 +36,11 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Local Vercel folder
+.vercel
+
+# Local environment files
+.env
+.env.local
+.env.*.local

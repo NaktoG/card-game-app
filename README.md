@@ -12,6 +12,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animated-0055FF)](https://motion.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://card-game-app.vercel.app)
 
 </div>
 
@@ -43,7 +44,9 @@ La experiencia está diseñada como una arena visual dark-first con animaciones,
 
 ## Demo
 
-> Deploy esperado: `https://naktog.github.io/card-game-app/`
+**Vercel:** [card-game-app.vercel.app](https://card-game-app.vercel.app)
+
+**GitHub Pages:** [naktog.github.io/card-game-app](https://naktog.github.io/card-game-app/)
 
 ## Stack Tecnológico
 
@@ -59,7 +62,7 @@ La experiencia está diseñada como una arena visual dark-first con animaciones,
 | Sonido        | Howler.js                        |
 | Tests         | Vitest + Testing Library         |
 | Calidad       | ESLint + Prettier                |
-| Hosting       | GitHub Pages                     |
+| Hosting       | Vercel                             |
 
 ## Instalación
 
@@ -147,6 +150,22 @@ La app puede instalarse en dispositivos compatibles:
 
 El service worker cachea el shell de la app y assets estáticos. No cachea la API de cartas para evitar datos obsoletos.
 
+## Deploy En Vercel
+
+El proyecto está preparado para despliegue en Vercel como SPA estática.
+
+Configuración:
+
+```txt
+Framework Preset: Vite
+Root Directory: ./
+Build Command: npm run build
+Output Directory: dist
+Install Command: npm ci
+```
+
+Ver detalles en [`docs/DEPLOYMENT.md`](./docs/DEPLOYMENT.md).
+
 ## Deploy En GitHub Pages
 
 El proyecto está preparado para publicarse como static site en GitHub Pages. Vite usa:
@@ -156,8 +175,6 @@ base: '/card-game-app/';
 ```
 
 El deploy automático se ejecuta desde GitHub Actions al hacer push a `main`.
-
-Ver detalles en [`docs/DEPLOYMENT.md`](./docs/DEPLOYMENT.md).
 
 ## Contribución
 

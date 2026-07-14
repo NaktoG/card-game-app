@@ -1,8 +1,9 @@
 const CACHE_NAME = 'card-game-app-v2';
+const SCOPE_PATH = new URL(self.registration.scope).pathname;
 const APP_SHELL = [
-  '/card-game-app/',
-  '/card-game-app/offline.html',
-  '/card-game-app/manifest.webmanifest',
+  SCOPE_PATH,
+  `${SCOPE_PATH}offline.html`,
+  `${SCOPE_PATH}manifest.webmanifest`,
 ];
 
 self.addEventListener('install', (event) => {
@@ -30,7 +31,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
-    event.respondWith(fetch(request).catch(() => caches.match('/card-game-app/offline.html')));
+    event.respondWith(fetch(request).catch(() => caches.match(`${SCOPE_PATH}offline.html`)));
     return;
   }
 

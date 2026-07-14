@@ -3,6 +3,6 @@ export const APP_CONFIG = {
   brandLabel: 'NaktoG Studio Demo',
   repositoryUrl: 'https://github.com/NaktoG/card-game-app',
   repositoryLabel: 'github.com/NaktoG/card-game-app',
-  basePath: '/card-game-app/',
-  serviceWorkerPath: '/card-game-app/sw.js',
+  basePath: import.meta.env.BASE_URL,
+  serviceWorkerPath: `${import.meta.env.BASE_URL}sw.js`,
 } as const;

@@ -6,9 +6,9 @@
 
 ## Estado
 
-- [ ] Preview desplegada
-- [ ] Producción desplegada
-- [ ] Variables configuradas
+- [x] Preview desplegada
+- [x] Producción desplegada
+- [x] Variables configuradas
 - [ ] Dominio configurado
 - [x] Pruebas completadas
 
@@ -23,6 +23,12 @@
 | Output Directory | `dist` |
 | Node.js | 18.20 o superior |
 | Gestor de paquetes | npm |
+
+## URL de Producción
+
+```txt
+https://card-game-app-lyart.vercel.app
+```
 
 ## Variables de entorno
 
@@ -55,6 +61,12 @@ Resultado: instalación, lint, typecheck, tests unitarios y build completados co
 ## Rollback
 
 Revertir la Pull Request de migración. Si se necesitara volver a GitHub Pages bajo subruta, restaurar `base: '/card-game-app/'` y las rutas PWA asociadas.
+
+Para rollback desde CLI:
+
+```bash
+vercel rollback
+```
 
 ## Última revisión
 

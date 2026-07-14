@@ -1,12 +1,37 @@
 # Deployment
 
+## Vercel
+
+Production URL:
+
+```txt
+https://card-game-app.vercel.app
+```
+
+Configuración en Vercel:
+
+| Setting | Value |
+|---|---|
+| Framework Preset | Vite |
+| Root Directory | `./` |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Install Command | `npm ci` |
+| Node.js | 18.x |
+
+### Notas Vercel
+
+- `vite.config.ts` usa `base: "/"` para Vercel (raíz del dominio).
+- Los paths PWA (`manifest.webmanifest`, `sw.js`) apuntan a `/` en lugar de `/card-game-app/`.
+- El service worker calcula el scope dinámicamente desde `self.registration.scope`.
+
 ## GitHub Pages
 
 El proyecto se publica con GitHub Actions desde la rama `main`.
 
-## Configuración Vite
+## Configuración Vite (GitHub Pages)
 
-Como GitHub Pages publica bajo subruta del repositorio, `vite.config.ts` define:
+Para GitHub Pages, `vite.config.ts` debe cambiarse a:
 
 ```ts
 base: '/card-game-app/';
@@ -31,7 +56,7 @@ El workflow `.github/workflows/ci.yml` usa Node 24 y ejecuta:
 3. Hacer push a `main`.
 4. Verificar deploy en Actions.
 
-## PWA En GitHub Pages
+## PWA
 
 Los assets PWA viven en `public/` y se publican automáticamente dentro de `dist/`.
 
@@ -42,4 +67,4 @@ Archivos relevantes:
 - `public/offline.html`
 - `public/pwa-icon.svg`
 
-El service worker usa scope `/card-game-app/`, alineado con la subruta de GitHub Pages.
+En Vercel, el service worker usa scope `/` (raíz). En GitHub Pages, usa `/card-game-app/`.

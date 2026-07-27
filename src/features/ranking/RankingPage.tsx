@@ -36,7 +36,12 @@ export function RankingPage({ onNavigate }: { onNavigate: (route: AppRoute) => v
               </span>
             </Button>
             {entries.length > 0 ? (
-              <Button type="button" variant="danger" onClick={clearRanking}>
+              <Button
+                type="button"
+                variant="danger"
+                onClick={clearRanking}
+                aria-describedby="clear-ranking-warning"
+              >
                 {t('ranking.clear')}
               </Button>
             ) : null}
@@ -47,6 +52,12 @@ export function RankingPage({ onNavigate }: { onNavigate: (route: AppRoute) => v
           <EmptyState title={t('ranking.emptyTitle')} description={t('ranking.emptyDescription')} />
         ) : (
           <PremiumPanel>
+            <p
+              id="clear-ranking-warning"
+              className="border-b border-white/10 px-4 py-3 text-sm font-semibold text-rose-100"
+            >
+              {t('ranking.clearWarning')}
+            </p>
             <div className="grid grid-cols-[72px_1fr_repeat(3,80px)] gap-2 border-b border-white/10 px-4 py-3 text-xs font-black uppercase tracking-[0.2em] text-slate-400 max-md:hidden">
               <span>#</span>
               <span>{t('ranking.player')}</span>

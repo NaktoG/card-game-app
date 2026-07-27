@@ -20,6 +20,38 @@ export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
   const isLoading = state.status === 'loading';
   const canDraw = Boolean(state.deckId) && state.remaining > 0 && !isLoading;
   const handsLeft = Math.floor(state.remaining / 2);
+  const lastOutcome = state.lastWinner
+    ? state.lastWinner === 'player'
+      ? t('game.playerWonHand')
+      : state.lastWinner === 'cpu'
+        ? t('game.cpuWonHand')
+        : t('game.tieHand')
+    : null;
+  const statusText = state.deckId
+    ? t('game.guidance.statusReady')
+    : state.status === 'error'
+      ? t('game.guidance.statusError')
+      : t('game.guidance.statusIdle');
+  const nextActionText = isLoading
+    ? t('game.guidance.pending')
+    : state.status === 'error'
+      ? t('game.guidance.nextError')
+      : canDraw
+        ? t('game.guidance.nextDraw')
+        : t('game.guidance.nextStart');
+  const describeCard = (side: 'player' | 'cpu') => {
+    const card = side === 'player' ? state.currentHand?.playerCard : state.currentHand?.cpuCard;
+
+    return card
+      ? t('game.guidance.cardLabel', {
+          side: side === 'player' ? t('game.player') : t('game.cpu'),
+          value: card.valueLabel,
+          suit: card.suit,
+        })
+      : t('game.guidance.hiddenCard', {
+          side: side === 'player' ? t('game.player') : t('game.cpu'),
+        });
+  };
 
   return (
     <MotionPage>
@@ -56,6 +88,17 @@ export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
           remaining={state.remaining}
         />
 
+        <div
+          className="rounded-[2rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-bold text-slate-100"
+          aria-live="polite"
+        >
+          <p>{t('game.guidance.status', { status: statusText })}</p>
+          <p className="mt-1 text-slate-300">
+            {t('game.guidance.next', { action: nextActionText })}
+          </p>
+          {lastOutcome ? <p className="mt-1 text-lime-100">{lastOutcome}</p> : null}
+        </div>
+
         {isLoading ? <LoadingState label={t('game.loading')} /> : null}
         {state.status === 'error' ? (
           <p className="rounded-2xl bg-rose-500/15 p-4 font-bold text-rose-100" role="alert">
@@ -69,11 +112,13 @@ export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
             label={t('game.player')}
             score={state.playerPile.length}
             active={state.lastWinner === 'player'}
+            statusLabel={state.lastWinner === 'player' ? t('game.guidance.wonLastHand') : undefined}
           >
             <CardView
               card={state.currentHand?.playerCard ?? null}
               side="player"
               isWinner={state.lastWinner === 'player' || state.lastWinner === 'tie'}
+              ariaLabel={describeCard('player')}
             />
           </PlayerPanel>
 
@@ -86,6 +131,7 @@ export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
               type="button"
               onClick={() => void drawHand()}
               disabled={!canDraw}
+              aria-busy={isLoading || undefined}
               className="w-full max-w-xs"
             >
               {isLoading ? t('game.drawing') : t('game.draw')}
@@ -96,11 +142,13 @@ export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
             label={t('game.cpu')}
             score={state.cpuPile.length}
             active={state.lastWinner === 'cpu'}
+            statusLabel={state.lastWinner === 'cpu' ? t('game.guidance.wonLastHand') : undefined}
           >
             <CardView
               card={state.currentHand?.cpuCard ?? null}
               side="cpu"
               isWinner={state.lastWinner === 'cpu' || state.lastWinner === 'tie'}
+              ariaLabel={describeCard('cpu')}
             />
           </PlayerPanel>
         </div>

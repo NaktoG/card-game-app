@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../shared/components/Button';
@@ -9,6 +9,21 @@ const confetti = Array.from({ length: 24 }, (_, index) => ({
   left: `${(index * 37) % 100}%`,
   delay: index * 0.03,
 }));
+
+const focusableSelector = [
+  'a[href]',
+  'button:not([disabled])',
+  'textarea:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+function getFocusableElements(container: HTMLElement) {
+  return Array.from(container.querySelectorAll<HTMLElement>(focusableSelector)).filter(
+    (element) => element.getAttribute('aria-hidden') !== 'true',
+  );
+}
 
 export function EndGameModal({
   open,
@@ -23,10 +38,72 @@ export function EndGameModal({
 }) {
   const { t } = useTranslation();
   const dialogRef = useRef<HTMLDivElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (open) dialogRef.current?.focus();
+    if (!open) return;
+
+    returnFocusRef.current =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    dialogRef.current?.focus();
   }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusableElements = getFocusableElements(dialog);
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const firstFocusable = focusableElements[0]!;
+      const lastFocusable = focusableElements[focusableElements.length - 1]!;
+      const activeElement = document.activeElement;
+
+      if (!dialog.contains(activeElement)) {
+        event.preventDefault();
+        (event.shiftKey ? lastFocusable : firstFocusable).focus();
+        return;
+      }
+
+      if (activeElement === dialog) {
+        event.preventDefault();
+        (event.shiftKey ? lastFocusable : firstFocusable).focus();
+        return;
+      }
+
+      if (event.shiftKey && activeElement === firstFocusable) {
+        event.preventDefault();
+        lastFocusable.focus();
+        return;
+      }
+
+      if (!event.shiftKey && activeElement === lastFocusable) {
+        event.preventDefault();
+        firstFocusable.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
+
+  const runAction = (action: () => void) => {
+    action();
+    returnFocusRef.current?.focus();
+  };
 
   if (!open) return null;
 
@@ -35,17 +112,19 @@ export function EndGameModal({
       className="fixed inset-0 z-50 grid place-items-center bg-slate-950/80 p-4 backdrop-blur-xl"
       role="presentation"
     >
-      {confetti.map((piece) => (
-        <motion.span
-          key={piece.id}
-          aria-hidden="true"
-          initial={{ y: -120, opacity: 0, rotate: 0 }}
-          animate={{ y: '110vh', opacity: [0, 1, 1, 0], rotate: 360 }}
-          transition={{ duration: 2.8, delay: piece.delay, ease: 'easeOut' }}
-          className="absolute top-0 h-3 w-2 rounded-sm bg-lime-300 shadow-glow"
-          style={{ left: piece.left }}
-        />
-      ))}
+      {shouldReduceMotion
+        ? null
+        : confetti.map((piece) => (
+            <motion.span
+              key={piece.id}
+              aria-hidden="true"
+              initial={{ y: -120, opacity: 0, rotate: 0 }}
+              animate={{ y: '110vh', opacity: [0, 1, 1, 0], rotate: 360 }}
+              transition={{ duration: 2.8, delay: piece.delay, ease: 'easeOut' }}
+              className="absolute top-0 h-3 w-2 rounded-sm bg-lime-300 shadow-glow"
+              style={{ left: piece.left }}
+            />
+          ))}
       <motion.div
         ref={dialogRef}
         tabIndex={-1}
@@ -69,10 +148,10 @@ export function EndGameModal({
           {t('result.summary', { playerCards: result.playerCards, cpuCards: result.cpuCards })}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-          <Button type="button" onClick={onPlayAgain}>
+          <Button type="button" onClick={() => runAction(onPlayAgain)}>
             {t('result.playAgain')}
           </Button>
-          <Button type="button" variant="secondary" onClick={onRanking}>
+          <Button type="button" variant="secondary" onClick={() => runAction(onRanking)}>
             {t('result.viewRanking')}
           </Button>
         </div>

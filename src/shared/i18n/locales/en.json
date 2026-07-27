@@ -2,7 +2,25 @@
   "app": {
     "title": "Card Game App",
     "subtitle": "A modern card arena with local ranking, sound and premium animations.",
-    "install": "Install"
+    "install": {
+      "action": "Install app",
+      "available": {
+        "title": "Install available",
+        "description": "Save it to your device without interrupting play."
+      },
+      "accepted": {
+        "title": "Install started",
+        "description": "Follow your browser prompt to finish adding the app."
+      },
+      "dismissed": {
+        "title": "Install dismissed",
+        "description": "You can keep playing and install later if your browser offers it."
+      },
+      "unavailable": {
+        "title": "Install is unavailable",
+        "description": "This browser or device may already have the app or may not support install."
+      }
+    }
   },
   "home": {
     "eyebrow": "Neon Card Arena",
@@ -14,6 +32,17 @@
     "start": "Enter the arena",
     "continueAs": "Continue as {{nickname}}",
     "language": "Language",
+    "onboarding": {
+      "title": "How to play",
+      "objectiveTitle": "Objective",
+      "objective": "Win more cards than the CPU before the deck runs out.",
+      "turnTitle": "Turn",
+      "turn": "Draw one card for you and one for the CPU. The higher card wins the hand.",
+      "tieTitle": "Tie and pot",
+      "tie": "Ties add cards to the pot. The next winning hand collects those cards.",
+      "rankingTitle": "Local ranking",
+      "ranking": "Ranking stays only on this device and browser. It is not shared online."
+    },
     "highlights": {
       "motion": "Framer Motion",
       "pwa": "PWA ready",
@@ -46,6 +75,20 @@
     "ready": "Prepare the deck to begin.",
     "loading": "Shuffling the deck...",
     "error": "We could not connect to the deck. Try again.",
+    "guidance": {
+      "status": "Status: {{status}}",
+      "next": "Next: {{action}}",
+      "statusIdle": "deck not started",
+      "statusReady": "deck ready",
+      "statusError": "deck connection failed",
+      "nextStart": "start a new game to prepare the deck",
+      "nextDraw": "draw cards to play the next hand",
+      "nextError": "start a new game to try again",
+      "pending": "action in progress. Please wait...",
+      "cardLabel": "{{side}} card: {{value}} of {{suit}}",
+      "hiddenCard": "{{side}} card: hidden",
+      "wonLastHand": "Won last hand"
+    },
     "soundOn": "Sound enabled",
     "soundOff": "Sound disabled"
   },
@@ -60,7 +103,7 @@
   },
   "ranking": {
     "title": "Local ranking",
-    "description": "Stored in this browser with localStorage. It is not shared across devices.",
+    "description": "Saved only in this browser. It is not an online leaderboard and is not shared across devices.",
     "emptyTitle": "No players yet",
     "emptyDescription": "Play a match to open the ranking.",
     "player": "Player",
@@ -69,6 +112,7 @@
     "draws": "Draws",
     "bestScore": "Best score",
     "games": "Games",
-    "clear": "Clear ranking"
+    "clear": "Clear local ranking",
+    "clearWarning": "This removes saved results from this device only."
   }
 }

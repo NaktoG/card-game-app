@@ -1,16 +1,16 @@
 {
   "name": "Card Game App",
   "short_name": "Card Game",
-  "description": "Modern animated card battle with local ranking, sound and bilingual UI.",
-  "start_url": "/",
-  "scope": "/",
+  "description": "Modern card battle with local ranking. The app shell can install, but gameplay can require network card access.",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#050816",
   "theme_color": "#050816",
   "icons": [
     {
-      "src": "/pwa-icon.svg",
+      "src": "./pwa-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

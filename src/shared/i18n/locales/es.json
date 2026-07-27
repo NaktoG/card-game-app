@@ -2,7 +2,25 @@
   "app": {
     "title": "Card Game App",
     "subtitle": "Arena de cartas moderna con ranking local, sonido y animaciones premium.",
-    "install": "Instalar"
+    "install": {
+      "action": "Instalar app",
+      "available": {
+        "title": "Instalación disponible",
+        "description": "Guárdala en tu dispositivo sin interrumpir la partida."
+      },
+      "accepted": {
+        "title": "Instalación iniciada",
+        "description": "Sigue el aviso del navegador para terminar de agregar la app."
+      },
+      "dismissed": {
+        "title": "Instalación descartada",
+        "description": "Puedes seguir jugando e instalar más tarde si el navegador lo ofrece."
+      },
+      "unavailable": {
+        "title": "Instalación no disponible",
+        "description": "Este navegador o dispositivo puede tener la app instalada o no admitir instalación."
+      }
+    }
   },
   "home": {
     "eyebrow": "Neon Card Arena",
@@ -57,6 +75,20 @@
     "ready": "Prepará el mazo para empezar.",
     "loading": "Barajando el mazo...",
     "error": "No pudimos conectar con el mazo. Intentá de nuevo.",
+    "guidance": {
+      "status": "Estado: {{status}}",
+      "next": "Siguiente: {{action}}",
+      "statusIdle": "mazo no iniciado",
+      "statusReady": "mazo listo",
+      "statusError": "falló la conexión con el mazo",
+      "nextStart": "inicia una nueva partida para preparar el mazo",
+      "nextDraw": "roba cartas para jugar la próxima mano",
+      "nextError": "inicia una nueva partida para intentar de nuevo",
+      "pending": "acción en progreso. Espera...",
+      "cardLabel": "Carta de {{side}}: {{value}} de {{suit}}",
+      "hiddenCard": "Carta de {{side}}: oculta",
+      "wonLastHand": "Ganó la última mano"
+    },
     "soundOn": "Sonido activado",
     "soundOff": "Sonido desactivado"
   },

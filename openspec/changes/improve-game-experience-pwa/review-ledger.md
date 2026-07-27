@@ -109,3 +109,11 @@ Status: APPROVED after fix round 1
 | id | lens | location | severity | status | evidence |
 | --- | --- | --- | --- | --- | --- |
 | R3-001 | reliability | `vite.config.ts:5`, `src/shared/config/appConfig.ts:1-9`, `src/shared/pwaAssets.test.ts:13-23` | BLOCKER | verified | Review found manifest relative `start_url`/`scope` conflicted with Vite/SW root-relative paths. Fix changed Vite base to `./`, normalized runtime `BASE_URL` to `./`, registered `./sw.js` with scope `./`, and added regression tests. Scoped re-review verified built output and tests. |
+
+## Reliability Review — Pre-PR PR #3
+
+Status: APPROVED
+
+| id | lens | location | severity | status | evidence |
+| --- | --- | --- | --- | --- | --- |
+| — | reliability | — | — | info | Empty ledger: R3 found no behavior, test, determinism, regression, static-host, PWA install, or offline contract blockers in the final PR #3 diff. |

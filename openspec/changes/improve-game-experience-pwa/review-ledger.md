@@ -73,3 +73,14 @@ Status: PASS with warning-level info
 | --- | --- | --- | --- | --- | --- |
 | R3-001 | reliability | `src/features/game/GamePage.tsx:30-34` | WARNING | info | A draw failure after a deck exists may show deck-ready status alongside error/retry guidance. Non-blocking warning; Phase 3 remains separate. |
 | R3-002 | reliability | `src/features/game/components/CardView.tsx:17-30` | WARNING | info | Card identity is exposed through an aria label on a generic wrapper while the image uses decorative alt text. Non-blocking warning for future semantic strengthening. |
+
+## Full 4R Review — Pre-PR PR #2
+
+Status: PASS with warning-level info
+
+| id | lens | location | severity | status | evidence |
+| --- | --- | --- | --- | --- | --- |
+| — | risk | — | — | info | Empty ledger: R1 found no security, permission, data exposure/loss, dependency, or privacy blockers. |
+| — | resilience | — | — | info | Empty ledger: R4 found no partial failure, recovery, dependency degradation, or static-host resilience blockers. |
+| — | readability | — | — | info | Empty ledger: R2 found no maintainability, naming, complexity, or review-clarity blockers. |
+| R3-001 | reliability | `src/features/game/GamePage.tsx:21-41,130-134` | WARNING | info | After a draw failure with an existing deck, retry/new-game guidance may conflict with an enabled Draw button. Non-blocking warning for future recovery-state refinement. |

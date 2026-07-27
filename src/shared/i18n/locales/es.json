@@ -57,6 +57,20 @@
     "ready": "Prepará el mazo para empezar.",
     "loading": "Barajando el mazo...",
     "error": "No pudimos conectar con el mazo. Intentá de nuevo.",
+    "guidance": {
+      "status": "Estado: {{status}}",
+      "next": "Siguiente: {{action}}",
+      "statusIdle": "mazo no iniciado",
+      "statusReady": "mazo listo",
+      "statusError": "falló la conexión con el mazo",
+      "nextStart": "inicia una nueva partida para preparar el mazo",
+      "nextDraw": "roba cartas para jugar la próxima mano",
+      "nextError": "inicia una nueva partida para intentar de nuevo",
+      "pending": "acción en progreso. Espera...",
+      "cardLabel": "Carta de {{side}}: {{value}} de {{suit}}",
+      "hiddenCard": "Carta de {{side}}: oculta",
+      "wonLastHand": "Ganó la última mano"
+    },
     "soundOn": "Sonido activado",
     "soundOff": "Sonido desactivado"
   },

@@ -57,6 +57,20 @@
     "ready": "Prepare the deck to begin.",
     "loading": "Shuffling the deck...",
     "error": "We could not connect to the deck. Try again.",
+    "guidance": {
+      "status": "Status: {{status}}",
+      "next": "Next: {{action}}",
+      "statusIdle": "deck not started",
+      "statusReady": "deck ready",
+      "statusError": "deck connection failed",
+      "nextStart": "start a new game to prepare the deck",
+      "nextDraw": "draw cards to play the next hand",
+      "nextError": "start a new game to try again",
+      "pending": "action in progress. Please wait...",
+      "cardLabel": "{{side}} card: {{value}} of {{suit}}",
+      "hiddenCard": "{{side}} card: hidden",
+      "wonLastHand": "Won last hand"
+    },
     "soundOn": "Sound enabled",
     "soundOff": "Sound disabled"
   },

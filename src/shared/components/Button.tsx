@@ -15,11 +15,14 @@ const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
 };
 
 export function Button({ children, className = '', variant = 'primary', ...props }: ButtonProps) {
+  const isDisabled = Boolean(props.disabled);
+
   return (
     <motion.button
       whileHover={{ y: -2, scale: 1.01 }}
       whileTap={{ scale: 0.97 }}
-      className={`min-h-11 rounded-2xl px-5 py-3 text-sm font-black uppercase tracking-[0.2em] transition disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className}`}
+      aria-disabled={isDisabled || undefined}
+      className={`min-h-11 rounded-2xl px-5 py-3 text-sm font-black uppercase tracking-[0.2em] transition disabled:cursor-not-allowed disabled:opacity-60 disabled:ring-2 disabled:ring-white/30 ${variants[variant]} ${className}`}
       {...props}
     >
       {children}

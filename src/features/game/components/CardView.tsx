@@ -6,10 +6,12 @@ export function CardView({
   card,
   side,
   isWinner,
+  ariaLabel,
 }: {
   card: GameCard | null;
   side: PlayerSide;
   isWinner: boolean;
+  ariaLabel: string;
 }) {
   return (
     <motion.div
@@ -21,7 +23,7 @@ export function CardView({
       className={`relative mx-auto aspect-[2.5/3.5] w-40 overflow-hidden rounded-[1.25rem] bg-white p-2 shadow-card sm:w-48 [transform-style:preserve-3d] ${
         isWinner ? 'ring-4 ring-lime-300 shadow-glow' : ''
       }`}
-      aria-label={card ? `${side} card ${card.valueLabel} ${card.suit}` : `${side} hidden card`}
+      aria-label={ariaLabel}
     >
       <img
         src={card?.image ?? backCard}

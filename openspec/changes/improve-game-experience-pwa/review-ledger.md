@@ -84,3 +84,28 @@ Status: PASS with warning-level info
 | — | resilience | — | — | info | Empty ledger: R4 found no partial failure, recovery, dependency degradation, or static-host resilience blockers. |
 | — | readability | — | — | info | Empty ledger: R2 found no maintainability, naming, complexity, or review-clarity blockers. |
 | R3-001 | reliability | `src/features/game/GamePage.tsx:21-41,130-134` | WARNING | info | After a draw failure with an existing deck, retry/new-game guidance may conflict with an enabled Draw button. Non-blocking warning for future recovery-state refinement. |
+
+## Judgment Day — Apply Phase PR #3
+
+Status: APPROVED after fix round 1
+
+| id | lens | location | severity | status | evidence |
+| --- | --- | --- | --- | --- | --- |
+| REL-001 | reliability | `index.html:21,24-26` | CRITICAL | verified | Initial Judge A review found `%BASE_URL%` metadata asset links could build to root-relative URLs under Vite base `/`, breaking static-subpath PWA metadata. Fix round 1 changed metadata links to `./` relative paths and updated static contract tests; both re-judges verified the fix. |
+
+## Gate Review — Apply Phase PR #3
+
+Status: PASS
+
+- Tasks 3.1–3.4 are marked complete in `tasks.md`.
+- Implementation covers install prompt outcomes, bilingual install copy, relative/static-host-safe manifest and metadata links, and honest offline limits.
+- No game mechanics or ranking storage scope drift was found.
+- Validation passed: `npm test`, targeted PWA tests, `npm run typecheck`, `npm run lint`, and `npm run build`.
+
+## Reliability Review — Pre-Commit PR #3
+
+Status: APPROVED after fix round 1
+
+| id | lens | location | severity | status | evidence |
+| --- | --- | --- | --- | --- | --- |
+| R3-001 | reliability | `vite.config.ts:5`, `src/shared/config/appConfig.ts:1-9`, `src/shared/pwaAssets.test.ts:13-23` | BLOCKER | verified | Review found manifest relative `start_url`/`scope` conflicted with Vite/SW root-relative paths. Fix changed Vite base to `./`, normalized runtime `BASE_URL` to `./`, registered `./sw.js` with scope `./`, and added regression tests. Scoped re-review verified built output and tests. |

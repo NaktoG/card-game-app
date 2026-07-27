@@ -2,7 +2,25 @@
   "app": {
     "title": "Card Game App",
     "subtitle": "Arena de cartas moderna con ranking local, sonido y animaciones premium.",
-    "install": "Instalar"
+    "install": {
+      "action": "Instalar app",
+      "available": {
+        "title": "Instalación disponible",
+        "description": "Guárdala en tu dispositivo sin interrumpir la partida."
+      },
+      "accepted": {
+        "title": "Instalación iniciada",
+        "description": "Sigue el aviso del navegador para terminar de agregar la app."
+      },
+      "dismissed": {
+        "title": "Instalación descartada",
+        "description": "Puedes seguir jugando e instalar más tarde si el navegador lo ofrece."
+      },
+      "unavailable": {
+        "title": "Instalación no disponible",
+        "description": "Este navegador o dispositivo puede tener la app instalada o no admitir instalación."
+      }
+    }
   },
   "home": {
     "eyebrow": "Neon Card Arena",

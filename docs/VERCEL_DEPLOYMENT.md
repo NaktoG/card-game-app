@@ -6,9 +6,9 @@
 
 ## Estado
 
-- [ ] Preview desplegada
-- [ ] Producción desplegada
-- [ ] Variables configuradas
+- [x] Preview desplegada
+- [x] Producción desplegada
+- [x] Variables configuradas
 - [ ] Dominio configurado
 - [x] Pruebas completadas
 
@@ -23,6 +23,18 @@
 | Output Directory | `dist` |
 | Node.js | 18.20 o superior |
 | Gestor de paquetes | npm |
+
+## URL de Producción
+
+```txt
+https://card-game-app-lyart.vercel.app
+```
+
+## Rutas y PWA
+
+La aplicación usa `base: './'` en Vite y rutas relativas para metadata, manifest e iconos. Esta configuración mantiene el despliegue raíz en Vercel y evita romper despliegues estáticos bajo subruta.
+
+El service worker se registra desde la ruta base normalizada de la app. Cuando Vite entrega `BASE_URL` como `/`, la aplicación lo normaliza a `./` para mantener consistencia con el manifest y los assets relativos.
 
 ## Variables de entorno
 
@@ -54,8 +66,14 @@ Resultado: instalación, lint, typecheck, tests unitarios y build completados co
 
 ## Rollback
 
-Revertir la Pull Request de migración. Si se necesitara volver a GitHub Pages bajo subruta, restaurar `base: '/card-game-app/'` y las rutas PWA asociadas.
+Revertir la Pull Request de migración o restaurar el último deployment estable en Vercel. No cambiar `base: './'` salvo que se valide explícitamente una nueva estrategia de publicación y sus rutas PWA asociadas.
+
+Para rollback desde CLI:
+
+```bash
+vercel rollback
+```
 
 ## Última revisión
 
-2026-07-14
+2026-07-27

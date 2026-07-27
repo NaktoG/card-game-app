@@ -1,7 +1,7 @@
 {
   "name": "Card Game App",
   "short_name": "Card Game",
-  "description": "Modern card battle with local ranking. The app shell can install, but gameplay can require network card access.",
+  "description": "Modern animated card battle with local ranking, sound and bilingual UI. The app shell can install, but gameplay can require network card access.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -11,6 +11,8 @@ import { playSound } from '../../shared/audio/soundManager';
 import { useSettingsStore } from '../settings/settingsStore';
 import { useSessionStore } from './sessionStore';
 
+const onboardingCards = ['objective', 'turn', 'tie', 'ranking'] as const;
+
 export function HomePage({ onNavigate }: { onNavigate: (route: AppRoute) => void }) {
   const { t } = useTranslation();
   const storedNickname = useSessionStore((state) => state.nickname);
@@ -87,6 +89,30 @@ export function HomePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
               </p>
             </form>
           </PremiumPanel>
+
+          <section className="mt-6 max-w-2xl" aria-labelledby="home-onboarding-title">
+            <h2
+              id="home-onboarding-title"
+              className="font-display text-2xl font-black tracking-[-0.04em] text-white"
+            >
+              {t('home.onboarding.title')}
+            </h2>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {onboardingCards.map((item) => (
+                <article
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/[0.055] p-4 backdrop-blur-xl"
+                >
+                  <h3 className="text-sm font-black uppercase tracking-[0.2em] text-lime-200">
+                    {t(`home.onboarding.${item}Title`)}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                    {t(`home.onboarding.${item}`)}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
 
           <div className="mt-6 grid max-w-2xl grid-cols-1 gap-3 text-sm sm:grid-cols-3">
             {(['motion', 'pwa', 'ranking'] as const).map((item) => (

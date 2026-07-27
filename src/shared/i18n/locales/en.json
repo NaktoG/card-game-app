@@ -14,6 +14,17 @@
     "start": "Enter the arena",
     "continueAs": "Continue as {{nickname}}",
     "language": "Language",
+    "onboarding": {
+      "title": "How to play",
+      "objectiveTitle": "Objective",
+      "objective": "Win more cards than the CPU before the deck runs out.",
+      "turnTitle": "Turn",
+      "turn": "Draw one card for you and one for the CPU. The higher card wins the hand.",
+      "tieTitle": "Tie and pot",
+      "tie": "Ties add cards to the pot. The next winning hand collects those cards.",
+      "rankingTitle": "Local ranking",
+      "ranking": "Ranking stays only on this device and browser. It is not shared online."
+    },
     "highlights": {
       "motion": "Framer Motion",
       "pwa": "PWA ready",
@@ -60,7 +71,7 @@
   },
   "ranking": {
     "title": "Local ranking",
-    "description": "Stored in this browser with localStorage. It is not shared across devices.",
+    "description": "Saved only in this browser. It is not an online leaderboard and is not shared across devices.",
     "emptyTitle": "No players yet",
     "emptyDescription": "Play a match to open the ranking.",
     "player": "Player",
@@ -69,6 +80,7 @@
     "draws": "Draws",
     "bestScore": "Best score",
     "games": "Games",
-    "clear": "Clear ranking"
+    "clear": "Clear local ranking",
+    "clearWarning": "This removes saved results from this device only."
   }
 }

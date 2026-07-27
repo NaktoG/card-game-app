@@ -117,3 +117,14 @@ Status: APPROVED
 | id | lens | location | severity | status | evidence |
 | --- | --- | --- | --- | --- | --- |
 | — | reliability | — | — | info | Empty ledger: R3 found no behavior, test, determinism, regression, static-host, PWA install, or offline contract blockers in the final PR #3 diff. |
+
+## Full 4R Review — Final Tracker PR
+
+Status: APPROVED with warning-level info
+
+| id | lens | location | severity | status | evidence |
+| --- | --- | --- | --- | --- | --- |
+| — | risk | — | — | info | Empty ledger: R1 found no security, permission, data exposure/loss, dependency, or privacy blockers. |
+| R4-001 | resilience | `docs/VERCEL_AUDIT.md:57-66` | BLOCKER | refuted | Refuter agreed observability could improve but found the BLOCKER overreaches: the final PR does not introduce the Deck of Cards dependency, app-level API error handling exists, and the deployment docs already document the dependency risk. |
+| R2-001 | readability | `docs/DEPLOYMENT.md:24-25` | WARNING | info | Deployment docs still describe the older Vercel/GitHub Pages base-path contract and can mislead future operators. Non-blocking warning for a follow-up documentation cleanup. |
+| — | reliability | — | — | info | Empty ledger: R3 found no behavior, test, determinism, regression, accessibility, or PWA/static-host contract blockers. |

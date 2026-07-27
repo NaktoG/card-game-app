@@ -4,11 +4,15 @@ Guía operativa mínima para mantener **Card Game App** en desarrollo y producci
 
 ## Producción
 
-- Hosting: GitHub Pages
+- Hosting principal: Vercel
+- Hosting secundario: GitHub Pages, si el workflow lo publica desde `main`
 - Rama de deploy: `main`
 - Build command: `npm run build`
 - Publish directory: `dist`
-- URL esperada: `https://naktog.github.io/card-game-app/`
+- URL principal: `https://card-game-app.vercel.app`
+- URL alternativa Vercel: `https://card-game-app-lyart.vercel.app`
+- URL GitHub Pages: `https://naktog.github.io/card-game-app/`
+- Contrato PWA: `vite.config.ts` usa `base: './'`; manifest, metadata, iconos y service worker usan rutas relativas.
 
 ## Deploy
 
@@ -22,13 +26,13 @@ npm test
 npm run build
 ```
 
-3. Abrir PR hacia `develop` o `main` según el flujo activo.
+3. Abrir PR hacia `main`, o usar PRs encadenados cuando el cambio supere el presupuesto de review.
 4. Merge a `main`.
-5. GitHub Actions publica `dist` en GitHub Pages.
+5. Vercel despliega producción desde `main`; GitHub Actions valida y publica GitHub Pages cuando aplique.
 
 ## Health Checks Manuales
 
-- Abrir `/card-game-app/` y verificar home.
+- Abrir la URL de producción principal y verificar home.
 - Registrar nickname y entrar al juego.
 - Crear mazo nuevo.
 - Robar cartas al menos tres veces.
@@ -42,13 +46,15 @@ npm run build
 
 ## Errores Comunes
 
-### Pantalla en blanco en GitHub Pages
+### Pantalla en blanco o assets 404
 
 Acciones:
 
-1. Confirmar que `vite.config.ts` tenga `base: '/card-game-app/'`.
-2. Revisar que GitHub Pages apunte a GitHub Actions.
-3. Abrir DevTools y revisar errores 404 de assets.
+1. Confirmar que `vite.config.ts` mantenga `base: './'`.
+2. Ejecutar `npm test -- --run src/shared/pwaAssets.test.ts`.
+3. Ejecutar `npm run build` y revisar que `dist/index.html` use rutas relativas para assets/manifest/iconos.
+4. Si falla GitHub Pages, revisar que Pages apunte a GitHub Actions.
+5. Abrir DevTools y revisar errores 404 de assets.
 
 ### No se cargan cartas
 
@@ -80,6 +86,12 @@ Desde Git:
 git revert <commit>
 git push origin main
 ```
+
+Desde Vercel:
+
+1. Abrir el proyecto en Vercel.
+2. Ir a Deployments.
+3. Restaurar el último deployment estable.
 
 Desde GitHub Pages:
 

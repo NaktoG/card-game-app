@@ -21,21 +21,17 @@ Configuración en Vercel:
 
 ### Notas Vercel
 
-- `vite.config.ts` usa `base: "/"` para Vercel (raíz del dominio).
-- Los paths PWA (`manifest.webmanifest`, `sw.js`) apuntan a `/` en lugar de `/card-game-app/`.
-- El service worker calcula el scope dinámicamente desde `self.registration.scope`.
+- `vite.config.ts` usa `base: './'` para mantener el build compatible con Vercel y con hosts estáticos bajo subruta.
+- Los paths PWA (`manifest.webmanifest`, iconos, metadata y `sw.js`) se mantienen relativos para evitar URLs root-relative frágiles.
+- La app normaliza `import.meta.env.BASE_URL` a `./` cuando Vite entrega `/`, y registra el service worker con path/scope relativos.
 
 ## GitHub Pages
 
-El proyecto se publica con GitHub Actions desde la rama `main`.
+El workflow de GitHub Pages existe, pero el deploy principal actual es Vercel. En pull requests y ramas que no sean `main`, el job de GitHub Pages se saltea.
 
-## Configuración Vite (GitHub Pages)
+## Configuración Vite
 
-Para GitHub Pages, `vite.config.ts` debe cambiarse a:
-
-```ts
-base: '/card-game-app/';
-```
+No cambiar `base: './'` sin validar también manifest, metadata, service worker y build generado. Esa base relativa es el contrato actual para mantener la PWA segura tanto en raíz como en subruta.
 
 ## Workflow
 
@@ -47,9 +43,11 @@ El workflow `.github/workflows/ci.yml` usa Node 24 y ejecuta:
 4. `npm test`
 5. `npm run build`
 6. Upload de `dist`
-7. Deploy a GitHub Pages en push a `main`
+7. Deploy a GitHub Pages solo cuando aplique según rama/evento
 
-## Activación En GitHub
+## Activación en GitHub Pages
+
+Solo aplica si se decide usar GitHub Pages como destino de publicación:
 
 1. Ir a Settings → Pages.
 2. Source: GitHub Actions.
@@ -67,4 +65,9 @@ Archivos relevantes:
 - `public/offline.html`
 - `public/pwa-icon.svg`
 
-En Vercel, el service worker usa scope `/` (raíz). En GitHub Pages, usa `/card-game-app/`.
+La PWA usa rutas relativas para manifest, iconos, metadata y service worker. Si se cambia la estrategia de publicación, validar con:
+
+```bash
+npm test -- --run src/shared/pwaAssets.test.ts
+npm run build
+```

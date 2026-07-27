@@ -40,7 +40,7 @@ Chain strategy: feature-branch-chain
 
 ## Phase 3: PR 3 — PWA Trust and Install
 
-- [ ] 3.1 RED: add `src/shared/components/InstallPrompt.test.tsx` for available, accepted, dismissed, and unavailable install outcomes.
-- [ ] 3.2 GREEN: update `src/shared/components/InstallPrompt.tsx` plus EN/ES install copy with compact non-blocking feedback.
-- [ ] 3.3 Update `public/manifest.webmanifest`, `public/offline.html`, and `index.html` with relative asset paths and honest offline limits.
-- [ ] 3.4 REFACTOR/VERIFY: run `npm test`, `npm run lint`, `npm run typecheck`, and `npm run build`; manually smoke language switch, keyboard flow, and offline fallback.
+- [x] 3.1 RED: add `src/shared/components/InstallPrompt.test.tsx` for available, accepted, dismissed, and unavailable install outcomes.
+- [x] 3.2 GREEN: update `src/shared/components/InstallPrompt.tsx` plus EN/ES install copy with compact non-blocking feedback.
+- [x] 3.3 Update `public/manifest.webmanifest`, `public/offline.html`, and `index.html` with relative asset paths and honest offline limits.
+- [x] 3.4 REFACTOR/VERIFY: run `npm test`, `npm run lint`, `npm run typecheck`, and `npm run build`; manually smoke language switch, keyboard flow, and offline fallback.

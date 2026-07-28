@@ -13,35 +13,86 @@ export function useGame(nickname: string) {
   const soundEnabled = useSettingsStore((settings) => settings.soundEnabled);
   const recordResult = useRankingStore((ranking) => ranking.recordResult);
   const recordedGameRef = useRef<string | null>(null);
+  const activeControllerRef = useRef<AbortController | null>(null);
+  const operationIdRef = useRef(0);
+
+  const abortActiveOperation = useCallback(() => {
+    activeControllerRef.current?.abort();
+    activeControllerRef.current = null;
+    operationIdRef.current += 1;
+  }, []);
+
+  const beginOperation = useCallback(() => {
+    abortActiveOperation();
+
+    const controller = new AbortController();
+    const operationId = operationIdRef.current;
+    activeControllerRef.current = controller;
+
+    return { controller, operationId };
+  }, [abortActiveOperation]);
+
+  const isActiveOperation = useCallback((operationId: number) => {
+    return operationIdRef.current === operationId;
+  }, []);
+
+  const isAbortError = useCallback((error: unknown) => {
+    return error instanceof DOMException && error.name === 'AbortError';
+  }, []);
 
   const startGame = useCallback(async () => {
-    const controller = new AbortController();
+    const { controller, operationId } = beginOperation();
     dispatch({ type: 'START_LOADING' });
     playSound('start', soundEnabled);
 
     try {
       const deck = await createDeck(controller.signal);
+      if (!isActiveOperation(operationId)) return;
+
       dispatch({ type: 'DECK_READY', deckId: deck.deck_id, remaining: deck.remaining });
       recordedGameRef.current = null;
-    } catch {
+    } catch (error) {
+      if (controller.signal.aborted || !isActiveOperation(operationId) || isAbortError(error))
+        return;
+
       dispatch({ type: 'ERROR', message: t('game.error') });
     }
-  }, [soundEnabled, t]);
+  }, [beginOperation, isAbortError, isActiveOperation, soundEnabled, t]);
 
   const drawHand = useCallback(async () => {
     if (!state.deckId || state.status === 'loading' || state.remaining === 0) return;
 
-    const controller = new AbortController();
+    const { controller, operationId } = beginOperation();
     dispatch({ type: 'START_LOADING' });
     playSound('draw', soundEnabled);
 
     try {
       const response = await drawCards(state.deckId, controller.signal);
+      if (!isActiveOperation(operationId)) return;
+
       dispatch({ type: 'DRAW_SUCCESS', response });
-    } catch {
+    } catch (error) {
+      if (controller.signal.aborted || !isActiveOperation(operationId) || isAbortError(error))
+        return;
+
       dispatch({ type: 'ERROR', message: t('game.error') });
     }
-  }, [soundEnabled, state.deckId, state.remaining, state.status, t]);
+  }, [
+    beginOperation,
+    isAbortError,
+    isActiveOperation,
+    soundEnabled,
+    state.deckId,
+    state.remaining,
+    state.status,
+    t,
+  ]);
+
+  useEffect(() => {
+    return () => {
+      abortActiveOperation();
+    };
+  }, [abortActiveOperation]);
 
   const result = useMemo(
     () => resolveGameWinner(state.playerPile.length, state.cpuPile.length),
@@ -77,8 +128,9 @@ export function useGame(nickname: string) {
   ]);
 
   const resetGame = useCallback(() => {
+    abortActiveOperation();
     dispatch({ type: 'RESET' });
-  }, []);
+  }, [abortActiveOperation]);
 
   return { state, result, startGame, drawHand, resetGame };
 }

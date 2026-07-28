@@ -39,9 +39,15 @@ testing:
       available: false
       tool: null
   coverage:
-    available: false
-    command: null
-    notes: No coverage script or coverage provider configuration detected.
+    available: true
+    command: npm run test:coverage
+    provider: Vitest V8
+    thresholds:
+      statements: 75
+      branches: 70
+      functions: 75
+      lines: 75
+    notes: Coverage is focused on production game domain/services/hooks and ranking store logic to avoid UI-heavy noise.
   quality_tools:
     linter:
       available: true
@@ -82,6 +88,6 @@ rules:
     lint_command: npm run lint
     typecheck_command: npm run typecheck
     build_command: npm run build
-    coverage_threshold: 0
+    coverage_threshold: 75
   archive:
     - Warn before merging destructive deltas or changes to persisted localStorage keys.

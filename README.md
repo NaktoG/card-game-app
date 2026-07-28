@@ -60,7 +60,7 @@ La experiencia está diseñada como una arena visual dark-first con animaciones,
 | Estado global | Zustand                          |
 | i18n          | i18next + react-i18next          |
 | Sonido        | Howler.js                        |
-| Tests         | Vitest + Testing Library         |
+| Tests         | Vitest + Testing Library + Playwright |
 | Calidad       | ESLint + Prettier                |
 | Hosting       | Vercel                             |
 
@@ -94,6 +94,8 @@ La app queda disponible en `http://localhost:5173/card-game-app/`.
 | `npm run format`       | Formatear con Prettier          |
 | `npm run format:check` | Verificar formato               |
 | `npm test`             | Ejecutar tests unitarios        |
+| `npm run test:e2e`     | Ejecutar smoke tests E2E en Chromium contra `vite preview` |
+| `npm run test:e2e:install` | Instalar navegador/deps de Playwright para Chromium |
 | `npm run test:watch`   | Tests en modo watch             |
 
 ## Estructura
@@ -149,6 +151,20 @@ La app puede instalarse en dispositivos compatibles:
 - Icono: `public/pwa-icon.svg`
 
 El service worker cachea el shell de la app y assets estáticos. No cachea la API de cartas para evitar datos obsoletos.
+
+## Testing
+
+La validación local recomendada es:
+
+```bash
+npm test
+npm run typecheck
+npm run lint
+npm run build
+npm run test:e2e
+```
+
+Los smoke tests E2E viven en `e2e/`, usan Playwright con Chromium y mockean la API de cartas para mantener el flujo de juego determinístico.
 
 ## Deploy En Vercel
 

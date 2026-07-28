@@ -24,6 +24,7 @@ npm run lint
 npm run typecheck
 npm test
 npm run build
+npm run test:e2e
 ```
 
 3. Abrir PR hacia `main`, o usar PRs encadenados cuando el cambio supere el presupuesto de review.
@@ -55,6 +56,14 @@ Acciones:
 3. Ejecutar `npm run build` y revisar que `dist/index.html` use rutas relativas para assets/manifest/iconos.
 4. Si falla GitHub Pages, revisar que Pages apunte a GitHub Actions.
 5. Abrir DevTools y revisar errores 404 de assets.
+
+### Playwright local no tiene navegador instalado
+
+Acciones:
+
+1. Ejecutar `npm run test:e2e:install`.
+2. Ejecutar `npm run build`.
+3. Ejecutar `npm run test:e2e`.
 
 ### No se cargan cartas
 

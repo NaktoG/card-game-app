@@ -21,7 +21,7 @@
 | Install Command | `npm ci` |
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
-| Node.js | 18.20 o superior |
+| Node.js | 20 o superior; CI usa 24 |
 | Gestor de paquetes | npm |
 
 ## URL de Producción

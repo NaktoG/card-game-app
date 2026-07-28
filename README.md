@@ -68,7 +68,7 @@ La experiencia está diseñada como una arena visual dark-first con animaciones,
 
 ### Requisitos Previos
 
-- Node.js 18.20 o superior
+- Node.js 20 o superior (CI usa Node 24)
 - npm 10 o superior
 
 ### Desarrollo Local

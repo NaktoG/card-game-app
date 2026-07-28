@@ -17,7 +17,7 @@ Configuración en Vercel:
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
 | Install Command | `npm ci` |
-| Node.js | 18.x |
+| Node.js | 20 o superior; CI usa 24 |
 
 ### Notas Vercel
 

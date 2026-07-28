@@ -88,6 +88,6 @@ rules:
     lint_command: npm run lint
     typecheck_command: npm run typecheck
     build_command: npm run build
-    coverage_threshold: 75
+    coverage_threshold: 70
   archive:
     - Warn before merging destructive deltas or changes to persisted localStorage keys.

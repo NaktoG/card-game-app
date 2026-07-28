@@ -1,9 +1,5 @@
 import react from '@vitejs/plugin-react';
-import {
-  configDefaults,
-  coverageConfigDefaults,
-  defineConfig,
-} from 'vitest/config';
+import { configDefaults, coverageConfigDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
   base: './',

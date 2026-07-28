@@ -6,7 +6,7 @@ React 19 con Vite, TypeScript estricto, Zustand, Framer Motion, Howler e i18next
 
 ## Versión de Node.js
 
-El proyecto no declara `engines` en `package.json`. La documentación del proyecto indica Node.js 18.20 o superior y npm 10 o superior.
+El proyecto declara `engines` en `package.json`: Node.js 20 o superior y npm 10 o superior. CI usa Node 24.
 
 ## Gestor de paquetes
 

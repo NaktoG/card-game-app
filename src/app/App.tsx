@@ -25,12 +25,11 @@ const routeIcons = {
 export function App() {
   const [route, setRoute] = useState<AppRoute>('home');
   const { t, i18n } = useTranslation();
-  const nickname = useSessionStore((state) => state.nickname);
   const soundEnabled = useSettingsStore((state) => state.soundEnabled);
   const toggleSound = useSettingsStore((state) => state.toggleSound);
 
   const navigate = (nextRoute: AppRoute) => {
-    if (nextRoute === 'game' && !nickname) {
+    if (nextRoute === 'game' && !useSessionStore.getState().nickname) {
       setRoute('home');
       return;
     }

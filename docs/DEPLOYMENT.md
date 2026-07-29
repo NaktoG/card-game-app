@@ -5,8 +5,10 @@
 Production URL:
 
 ```txt
-https://card-game-app.vercel.app
+https://card-game-app-lyart.vercel.app
 ```
+
+Operational caveat: `https://card-game-app.vercel.app` is a stale/legacy URL that serves an older CRA/Blackjack app. Do not treat it as the current production deployment.
 
 Configuración en Vercel:
 

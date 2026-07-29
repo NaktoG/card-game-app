@@ -12,7 +12,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animated-0055FF)](https://motion.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://card-game-app.vercel.app)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://card-game-app-lyart.vercel.app)
 
 </div>
 
@@ -44,7 +44,7 @@ La experiencia está diseñada como una arena visual dark-first con animaciones,
 
 ## Demo
 
-**Vercel:** [card-game-app.vercel.app](https://card-game-app.vercel.app)
+**Vercel:** [card-game-app-lyart.vercel.app](https://card-game-app-lyart.vercel.app)
 
 **GitHub Pages:** [naktog.github.io/card-game-app](https://naktog.github.io/card-game-app/)
 

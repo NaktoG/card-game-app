@@ -9,8 +9,8 @@ Guía operativa mínima para mantener **Card Game App** en desarrollo y producci
 - Rama de deploy: `main`
 - Build command: `npm run build`
 - Publish directory: `dist`
-- URL principal: `https://card-game-app.vercel.app`
-- URL alternativa Vercel: `https://card-game-app-lyart.vercel.app`
+- URL principal Vercel: `https://card-game-app-lyart.vercel.app`
+- URL legacy/stale: `https://card-game-app.vercel.app` sirve una app CRA/Blackjack anterior y no debe tratarse como producción actual.
 - URL GitHub Pages: `https://naktog.github.io/card-game-app/`
 - Contrato PWA: `vite.config.ts` usa `base: './'`; manifest, metadata, iconos y service worker usan rutas relativas.
 

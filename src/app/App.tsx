@@ -24,6 +24,7 @@ const routeIcons = {
 
 export function App() {
   const [route, setRoute] = useState<AppRoute>('home');
+  const [prevRoute, setPrevRoute] = useState<AppRoute | null>(null);
   const { t, i18n } = useTranslation();
   const soundEnabled = useSettingsStore((state) => state.soundEnabled);
   const toggleSound = useSettingsStore((state) => state.toggleSound);
@@ -34,6 +35,7 @@ export function App() {
       return;
     }
 
+    setPrevRoute(route);
     setRoute(nextRoute);
   };
 
@@ -43,7 +45,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-dvh overflow-hidden bg-slate-950 text-white">
+    <div className="relative min-h-dvh overflow-hidden bg-slate-950 text-white">
       <ArenaBackdrop />
 
       <header className="sticky top-0 z-30 border-b border-white/10 bg-slate-950/70 backdrop-blur-2xl">
@@ -107,9 +109,20 @@ export function App() {
         </div>
       </header>
 
-      <AnimatePresence mode="wait">
-        {route === 'home' ? <HomePage key="home" onNavigate={navigate} /> : null}
-        {route === 'game' ? <GamePage key="game" onNavigate={navigate} /> : null}
+      <AnimatePresence>
+        {route === 'home' ? (
+          <HomePage
+            key="home"
+            onNavigate={navigate}
+          />
+        ) : null}
+        {route === 'game' ? (
+          <GamePage
+            key="game"
+            onNavigate={navigate}
+            direction={prevRoute === 'home' ? 'enter-arena' : 'default'}
+          />
+        ) : null}
         {route === 'ranking' ? <RankingPage key="ranking" onNavigate={navigate} /> : null}
       </AnimatePresence>
       <AppFooter />

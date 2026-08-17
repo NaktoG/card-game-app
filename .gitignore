@@ -45,5 +45,9 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Playwright
+playwright-report/
+test-results/
+
 # Local agent tooling cache
 .atl/

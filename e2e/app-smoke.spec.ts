@@ -19,7 +19,7 @@ test('onboarding accepts a nickname and reaches the game surface', async ({ page
   await page.getByLabel('Nickname').fill('Smoke Player');
   await page.getByRole('button', { name: /enter the arena/i }).click();
 
-  await expect(page.getByText('Smoke Player')).toBeVisible();
+  await expect(page.getByText('Smoke Player', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /new game/i })).toBeVisible();
   await expect(page.getByRole('button', { name: /draw cards/i })).toBeDisabled();
 });

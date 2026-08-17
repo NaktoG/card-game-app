@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Medal, Play } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { AppRoute } from '../../app/App';
@@ -9,11 +9,66 @@ import { PremiumPanel } from '../../shared/components/PremiumPanel';
 import { useSessionStore } from '../home/sessionStore';
 import { useRankingStore } from './rankingStore';
 
+const TOP_POSITIONS = 3;
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+function getPositionStyles(index: number) {
+  const position = index + 1;
+
+  if (position === 1) {
+    return {
+      row: 'bg-lime-300/5 border border-lime-300/20',
+      positionBadge: 'bg-lime-300 text-slate-950',
+      medalColor: 'text-lime-300',
+    };
+  }
+
+  if (position === 2) {
+    return {
+      row: 'bg-cyan-300/5 border border-cyan-300/15',
+      positionBadge: 'bg-cyan-300/80 text-slate-950',
+      medalColor: 'text-cyan-300',
+    };
+  }
+
+  if (position === 3) {
+    return {
+      row: 'bg-violet-300/5 border border-violet-300/15',
+      positionBadge: 'bg-violet-300/70 text-white',
+      medalColor: 'text-violet-300',
+    };
+  }
+
+  return {
+    row: '',
+    positionBadge: 'bg-white/10 text-slate-200',
+    medalColor: 'text-slate-400',
+  };
+}
+
+function getRowMotion(index: number, prefersReducedMotion: boolean) {
+  if (prefersReducedMotion) {
+    return {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      transition: { duration: 0.15 },
+    };
+  }
+
+  return {
+    initial: { opacity: 0, x: -12 },
+    animate: { opacity: 1, x: 0 },
+    transition: { delay: index * 0.04, duration: 0.35, ease },
+  };
+}
+
 export function RankingPage({ onNavigate }: { onNavigate: (route: AppRoute) => void }) {
   const { t } = useTranslation();
   const entries = useRankingStore((state) => state.entries);
   const clearRanking = useRankingStore((state) => state.clearRanking);
   const nickname = useSessionStore((state) => state.nickname);
+  const prefersReducedMotion = useReducedMotion() ?? false;
 
   return (
     <MotionPage>
@@ -66,29 +121,48 @@ export function RankingPage({ onNavigate }: { onNavigate: (route: AppRoute) => v
               <span>{t('ranking.games')}</span>
             </div>
             <div className="divide-y divide-white/10">
-              {entries.map((entry, index) => (
-                <motion.article
-                  key={entry.id}
-                  initial={{ opacity: 0, x: -18 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="grid gap-3 px-4 py-4 md:grid-cols-[72px_1fr_repeat(3,80px)] md:items-center"
-                >
-                  <div className="flex items-center gap-3 text-lime-200">
-                    <Medal size={22} aria-hidden="true" />
-                    <span className="font-black">{index + 1}</span>
-                  </div>
-                  <div>
-                    <p className="text-lg font-black text-white">{entry.nickname}</p>
-                    <p className="text-sm text-slate-400">
-                      {t('ranking.losses')}: {entry.losses} · {t('ranking.draws')}: {entry.draws}
-                    </p>
-                  </div>
-                  <Stat label={t('ranking.wins')} value={entry.wins} />
-                  <Stat label={t('ranking.bestScore')} value={entry.bestScore} />
-                  <Stat label={t('ranking.games')} value={entry.gamesPlayed} />
-                </motion.article>
-              ))}
+              {entries.map((entry, index) => {
+                const positionStyles = getPositionStyles(index);
+                const motionProps = getRowMotion(index, prefersReducedMotion);
+
+                return (
+                  <motion.article
+                    key={entry.id}
+                    initial={motionProps.initial}
+                    animate={motionProps.animate}
+                    transition={motionProps.transition}
+                    data-testid={`ranking-row-${index}`}
+                    data-position={index + 1}
+                    className={`grid gap-3 px-4 py-4 md:grid-cols-[72px_1fr_repeat(3,80px)] md:items-center ${positionStyles.row}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={`inline-flex h-7 w-7 items-center justify-center rounded-full text-xs font-black ${positionStyles.positionBadge}`}
+                        aria-hidden="true"
+                      >
+                        {index + 1}
+                      </span>
+                      {index < TOP_POSITIONS && (
+                        <Medal
+                          size={18}
+                          className={positionStyles.medalColor}
+                          aria-hidden="true"
+                        />
+                      )}
+                      <span className="sr-only">#{index + 1}</span>
+                    </div>
+                    <div>
+                      <p className="text-lg font-black text-white">{entry.nickname}</p>
+                      <p className="text-sm text-slate-400">
+                        {t('ranking.losses')}: {entry.losses} · {t('ranking.draws')}: {entry.draws}
+                      </p>
+                    </div>
+                    <Stat label={t('ranking.wins')} value={entry.wins} />
+                    <Stat label={t('ranking.bestScore')} value={entry.bestScore} />
+                    <Stat label={t('ranking.games')} value={entry.gamesPlayed} />
+                  </motion.article>
+                );
+              })}
             </div>
           </PremiumPanel>
         )}

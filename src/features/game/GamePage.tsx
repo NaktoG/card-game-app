@@ -5,6 +5,7 @@ import type { AppRoute } from '../../app/App';
 import { Button } from '../../shared/components/Button';
 import { LoadingState } from '../../shared/components/LoadingState';
 import { MotionPage } from '../../shared/components/MotionPage';
+import type { TransitionDirection } from '../../shared/components/MotionPage';
 import { useSessionStore } from '../home/sessionStore';
 import { CardView } from './components/CardView';
 import { DeckStack } from './components/DeckStack';
@@ -13,7 +14,13 @@ import { PlayerPanel } from './components/PlayerPanel';
 import { Scoreboard } from './components/Scoreboard';
 import { useGame } from './hooks/useGame';
 
-export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void }) {
+export function GamePage({
+  onNavigate,
+  direction,
+}: {
+  onNavigate: (route: AppRoute) => void;
+  direction?: TransitionDirection;
+}) {
   const { t } = useTranslation();
   const nickname = useSessionStore((state) => state.nickname);
   const { state, result, startGame, drawHand, resetGame } = useGame(nickname);
@@ -54,7 +61,7 @@ export function GamePage({ onNavigate }: { onNavigate: (route: AppRoute) => void
   };
 
   return (
-    <MotionPage>
+    <MotionPage direction={direction}>
       <section className="space-y-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
